@@ -2,30 +2,34 @@
 
 include "properties.inc.php";
 
-function create_rekla();
+$product = $_POST["product"];
 
-function create_rekla() {
-	if(!isset($_POST["product"])) {
+$components = get_components($product);
+foreach($components as $component) {
+	echo $component;
+	echo "<br>";
+}
+
+function get_components($product) {
+	if(!isset($product)) {
 		echo "Produkt nicht gesetzt!";
 	}
 	
 	$c = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
 	
-	$select = "SELECT name FROM komponente WHERE produkt = '".$_POST["product"]."'";
+	$select = "SELECT name FROM komponente WHERE produkt = '".$product."'";
 	
 	$result = mysqli_query($c, $select);
 	
-	$komponenten = "";
+	$komponenten = array();
 	
 	if($result != false) {
 		while($row = mysqli_fetch_assoc($result)) {
-			$komponenten = $komponenten.$row["name"].", ";
+			$komponenten[] = $row["name"];
 		}
-	} else {
-		echo "DB-Fehler";
 	}
 	
-	echo $komponenten;
+	return $komponenten;
 	
 }
 
