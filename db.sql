@@ -1,3 +1,8 @@
+DROP TABLE IF EXISTS produkt;
+DROP TABLE IF EXISTS komponente;
+DROP TABLE IF EXISTS reklamation;
+DROP TABLE IF EXISTS reklamateur;
+
 CREATE TABLE produkt (
 	name VARCHAR(100) PRIMARY KEY,
 	typ VARCHAR(100),
@@ -10,6 +15,21 @@ CREATE TABLE komponente (
 	produkt VARCHAR(100),
 	preis INT,
 	FOREIGN KEY (produkt) REFERENCES produkt(name)
+);
+
+CREATE TABLE reklamation (
+	id VARCHAR(10) PRIMARY KEY,
+	produkt VARCHAR(100),
+	komponente VARCHAR(100),
+	reklamateur VARCHAR(10),
+	datum VARCHAR(100)
+);
+
+CREATE TABLE reklamateur (
+	id VARCHAR(10) PRIMARY KEY,
+	name VARCHAR(100),
+	tel VARCHAR(100),
+	anschrift VARCHAR(200)
 );
 
 INSERT INTO produkt (name, typ, kategorie, preis) VALUES ('Laptop', 'Computer', 'Elektronik', 150);
