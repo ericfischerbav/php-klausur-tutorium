@@ -124,7 +124,7 @@ class Reklamation {
 /*
 * Ab hier der Testcode.
 */
-
+/*
 $reklamation = new Reklamation();
 $reklamation->produkt = "Laptop";
 $reklamation->komponente = "Maus";
@@ -132,5 +132,5 @@ $reklamation->reklamateur->name = "Felix";
 $reklamation->reklamateur->tel = "0815";
 $reklamation->reklamateur->anschrift = "Von Nebenan";
 $reklamation->save();
-
+*/
 ?>

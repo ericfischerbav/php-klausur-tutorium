@@ -1,8 +1,21 @@
 <?php
 
 include "component_search.php";
+include "class.php";
 
-
+if(isset($_POST["button"])) {
+	if(!isset($_POST["komponente"]) and !isset($_POST["name"]) and !isset($_POST["tel"]) and !isset($_POST["adresse"])) {
+		$error = "Bitte alles ausfüllen.";
+	} else {
+		$reklamation = new Reklamation();
+		$reklamation->produkt = $_POST["product"];
+		$reklamation->komponente = $_POST["komponente"];
+		$reklamation->reklamateur->name = $_POST["name"];
+		$reklamation->reklamateur->anschrift = $_POST["adresse"];
+		$reklamation->reklamateur->tel = $_POST["tel"];
+		$reklamation->save();
+	}
+}
 
 ?>
 
@@ -34,6 +47,10 @@ include "component_search.php";
 		<input type="hidden" name="product" value="<?php echo $_POST["product"]; ?>" />
 		<input type="submit" name="button" value="Senden" />
 	</form>
+	<?php
+	elseif (isset($error)) :
+	?>
+	<p><?php echo $error; ?></p>
 	<?php
 	else :
 	?>
