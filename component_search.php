@@ -2,14 +2,6 @@
 
 include "properties.inc.php";
 
-$product = $_POST["product"];
-
-$components = get_components($product);
-foreach($components as $component) {
-	echo $component;
-	echo "<br>";
-}
-
 function get_components($product) {
 	if(!isset($product)) {
 		echo "Produkt nicht gesetzt!";

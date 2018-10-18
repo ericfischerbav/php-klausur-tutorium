@@ -114,6 +114,11 @@ class Reklamation {
 		mysqli_query($this->c, $rekla_insert);
 	}
 	
+	// GETTER
+	public function get_id() {
+		return $this->id;
+	}
+	
 }
 
 /*
